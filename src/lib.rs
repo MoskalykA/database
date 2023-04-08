@@ -24,14 +24,14 @@ pub struct Collection {
 }
 
 impl Collection {
-    fn new(name: String) -> Self {
+    pub fn new(name: String) -> Self {
         Self {
             name,
             data: HashMap::default(),
         }
     }
 
-    fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
+    pub fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
         cursor.write_string::<u8>(self.name.clone()).unwrap();
 
         for (key, data) in self.data.iter() {
@@ -53,15 +53,15 @@ impl Collection {
         }
     }
 
-    fn add_data(&mut self, key: String, data: Data) {
+    pub fn add_data(&mut self, key: String, data: Data) {
         self.data.insert(key, data);
     }
 
-    fn delete_data(&mut self, key: String) {
+    pub fn delete_data(&mut self, key: String) {
         self.data.remove(&key);
     }
 
-    fn modify_data(&mut self, key: String, data: Data) {
+    pub fn modify_data(&mut self, key: String, data: Data) {
         self.delete_data(key.clone());
         self.add_data(key, data);
     }
@@ -73,14 +73,14 @@ pub struct Database {
 }
 
 impl Database {
-    fn new(name: String) -> Self {
+    pub fn new(name: String) -> Self {
         Self {
             name,
             collections: Vec::default(),
         }
     }
 
-    fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
+    pub fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
         cursor.write_string::<u8>(self.name.clone()).unwrap();
 
         for collection in self.collections.iter() {
@@ -88,7 +88,7 @@ impl Database {
         }
     }
 
-    fn add_collection(&mut self, collection: Collection) {
+    pub fn add_collection(&mut self, collection: Collection) {
         self.collections.push(collection);
     }
 }
@@ -97,7 +97,7 @@ impl Database {
 pub struct World(Vec<Database>);
 
 impl World {
-    fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
+    pub fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
         cursor.write_u8(self.0.len().try_into().unwrap()).unwrap();
 
         for database in self.0.iter() {
@@ -105,7 +105,7 @@ impl World {
         }
     }
 
-    fn add_database(&mut self, database: Database) {
+    pub fn add_database(&mut self, database: Database) {
         self.0.push(database);
     }
 }

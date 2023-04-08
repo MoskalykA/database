@@ -1,5 +1,5 @@
 use std::{fs::File, io::{Cursor, Write}};
-use database::{Collection, World, Database};
+use database::{Collection, World, Database, Data};
 
 fn main() {
     let mut collection = Collection::new("test".to_string());
