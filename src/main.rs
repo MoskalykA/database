@@ -51,6 +51,11 @@ impl Collection {
     fn delete_data(&mut self, key: String) {
         self.data.remove(&key);
     }
+
+    fn modify_data(&mut self, key: String, data: Data) {
+        self.delete_data(key.clone());
+        self.add_data(key, data);
+    }
 }
 
 pub struct Database {
@@ -100,8 +105,11 @@ fn main() {
     let mut collection = Collection::new("test".to_string());
     collection.add_data("a".to_string(), Data::String("Hello".to_string()));
     collection.add_data("b".to_string(), Data::U8(11));
+    collection.add_data("c".to_string(), Data::String("Gitchub".to_string()));
 
     collection.delete_data("b".to_string());
+
+    collection.modify_data("c".to_string(), Data::String("Github".to_string()));
 
     let mut database = Database::new("hello".to_string());
     database.add_collection(collection);
