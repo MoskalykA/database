@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-acursor = { path = "../acursor" }
+acursor = "0.0.1"

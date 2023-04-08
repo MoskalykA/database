@@ -4,7 +4,9 @@ version = 3
 
 [[package]]
 name = "acursor"
-version = "0.1.0"
+version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0cd62f09f594e522865803d0f3491b33c34ca8e33e38b722393fdfce6fd97e6"
 
 [[package]]
 name = "database"
