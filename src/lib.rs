@@ -6,6 +6,7 @@ use std::{
 
 pub enum Data {
     String(String),
+
     I8(i8),
     U8(u8),
     I16(i16),
@@ -16,6 +17,9 @@ pub enum Data {
     U64(u64),
     I128(i128),
     U128(u128),
+
+    F32(f32),
+    F64(f64)
 }
 
 pub struct Collection {
@@ -39,6 +43,7 @@ impl Collection {
 
             match data {
                 Data::String(string) => cursor.write_string::<u8>(string.to_string()).unwrap(),
+
                 Data::I8(number) => cursor.write_i8(*number).unwrap(),
                 Data::U8(number) => cursor.write_u8(*number).unwrap(),
                 Data::I16(number) => cursor.write_i16(*number).unwrap(),
@@ -49,6 +54,9 @@ impl Collection {
                 Data::U64(number) => cursor.write_u64(*number).unwrap(),
                 Data::I128(number) => cursor.write_i128(*number).unwrap(),
                 Data::U128(number) => cursor.write_u128(*number).unwrap(),
+
+                Data::F32(number) => cursor.write_f32(*number).unwrap(),
+                Data::F64(number) => cursor.write_f64(*number).unwrap(),
             }
         }
     }
