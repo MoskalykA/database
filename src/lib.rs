@@ -1,4 +1,4 @@
-use acursor::WriteBytes;
+use acursor::write::WriteBytes;
 use std::{
     collections::HashMap,
     io::Cursor,
