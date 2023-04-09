@@ -1,8 +1,5 @@
 use acursor::write::WriteBytes;
-use std::{
-    collections::HashMap,
-    io::Cursor,
-};
+use std::{collections::HashMap, io::Cursor};
 
 pub enum Data {
     String(String),
@@ -19,7 +16,7 @@ pub enum Data {
     U128(u128),
 
     F32(f32),
-    F64(f64)
+    F64(f64),
 }
 
 pub struct Collection {
