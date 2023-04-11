@@ -1,6 +1,7 @@
 use acursor::write::WriteBytes;
 use std::{collections::HashMap, io::Cursor};
 
+#[derive(Clone, Debug)]
 pub enum Data {
     String(String),
 
@@ -19,9 +20,10 @@ pub enum Data {
     F64(f64),
 }
 
+#[derive(Clone, Debug)]
 pub struct Collection {
-    name: String,
-    data: HashMap<String, Data>,
+    pub name: String,
+    pub data: HashMap<String, Data>,
 }
 
 impl Collection {
@@ -72,9 +74,10 @@ impl Collection {
     }
 }
 
+#[derive(Clone, Debug)]
 pub struct Database {
-    name: String,
-    collections: Vec<Collection>,
+    pub name: String,
+    pub collections: Vec<Collection>,
 }
 
 impl Database {
@@ -98,8 +101,8 @@ impl Database {
     }
 }
 
-#[derive(Default)]
-pub struct World(Vec<Database>);
+#[derive(Default, Clone, Debug)]
+pub struct World(pub Vec<Database>);
 
 impl World {
     pub fn serialize(&self, cursor: &mut Cursor<Vec<u8>>) {
